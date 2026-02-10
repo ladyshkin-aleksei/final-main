@@ -10,7 +10,7 @@ jobs:
       - name: Install dependencies
         run: go mod download  # Обязательно!
 
-      - name: Run Unit Tests
+      - name: Run Tests
         run: |
           go test ./... -v -timeout 5m
 
