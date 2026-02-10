@@ -7,13 +7,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: go mod download  # Обязательно!
+
       - name: Run Unit Tests
-        run: GOOS=linux GOARCH=amd64 go test
+        run: |
+          go test ./... -v -timeout 5m
 
       - name: Vet
         run: |
           go vet ./...
-
   deploy:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
